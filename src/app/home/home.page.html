@@ -1,44 +1,212 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color='dark'>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-icon ios="ios-arrow-back" md="md-arrow-back" class="icon-size"></ion-icon>
     </ion-buttons>
-    <ion-title>
-      Home
-    </ion-title>
+
+    <ion-buttons slot='end'>
+      <ion-icon ios="ios-help-circle" md="md-help-circle" class="icon-size"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-card class="welcome-card">
-      <img src="/assets/shapes.svg" alt="" />
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
-      </ion-card-content>
-    </ion-card>
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
-      </ion-item>
-    </ion-list>
+<ion-content padding>
+  <!-- <ion-searchbar mode="ios" 
+  [(ngModel)]="searchTerm"
+  (ionChange)="setFilteredItems()">
+  </ion-searchbar> -->
+
+  <form [formGroup]="form">
+    <ion-row>
+      <ion-col col-10>
+        <tag-input formControlName="tags" [separatorKeyCodes]="[32]" (ngModelChange)="search()" placeholder="Search..">
+        </tag-input>
+      </ion-col>
+      <ion-col col-1>
+        <ion-icon ios="ios-search" md="md-search" class="icon-size search"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </form>
+  <b *ngIf="items">You may also search for:</b>
+  <ion-row *ngIf="items">
+    <ion-col col-3 *ngFor="let item of items">
+      <ion-chip>
+        {{ item.title }}
+      </ion-chip>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <h5 align='center'><b>200K</b></h5>
+      <p align='center'>Number of people talking about #fashion #shoes</p>
+    </ion-col>
+    <ion-col>
+      <h5 align='center'><b>20K</b></h5>
+      <p align='center'>Number of Kofluence influencers talking about #fashion #shoes</p>
+    </ion-col>
+  </ion-row>
+ 
+    <ion-button ion-button color='danger'  expand="full" shape="round">Start A Campaign</ion-button>
+  
+
+  <ion-segment color='warning' [(ngModel)]="posts">
+    <ion-segment-button (ionSelect)="segmentButtonClicked(topPosts)" value="topPosts">
+      <ion-label>Top Posts</ion-label>
+    </ion-segment-button>
+    <ion-segment-button (ionSelect)="segmentButtonClicked(latestPosts)" value="latestPosts">
+      <ion-label>Latest Posts</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="box image">
+        <img src="{{icon1}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>10,000</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>10,000</label>
+        </div>
+      </ion-col>
+      <label></label>
+      <ion-col class="box image">
+        <img src="{{icon2}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>3000</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>1,500</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <!-- <br> -->
+    <ion-row>
+      <ion-col class="box image">
+        <img src="{{icon3}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>12,000</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>1,000</label>
+        </div>
+      </ion-col>
+      <label></label>
+      <ion-col class="box image">
+        <img src="{{icon4}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>30,000</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>7,000</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <!-- <br> -->
+    <ion-row>
+      <ion-col class="box image">
+        <img src="{{icon5}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>12,000</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>800</label>
+        </div>
+      </ion-col>
+      <label></label>
+      <ion-col class="box image">
+        <img src="{{icon6}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>10,000</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>10,000</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="box image">
+        <img src="{{icon7}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>1,000</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>300</label>
+        </div>
+      </ion-col>
+      <label></label>
+      <ion-col class="box image">
+        <img src="{{icon8}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>1,200</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>300</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="box image">
+        <img src="{{icon9}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>2,000</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>500</label>
+        </div>
+      </ion-col>
+      <label></label>
+      <ion-col class="box image">
+        <img src="{{icon10}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>3,000</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>700</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="box image">
+        <img src="{{icon11}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>1,200</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>250</label>
+        </div>
+      </ion-col>
+      <label></label>
+      <ion-col class="box image">
+        <img src="{{icon12}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>3,300</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>779</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="box image">
+        <img src="{{icon13}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>3,000</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>1,200</label>
+        </div>
+      </ion-col>
+      <label></label>
+      <ion-col class="box image">
+        <img src="{{icon14}}" alt="">
+        <div align="bottom">
+          <ion-icon ios="ios-eye" md="md-eye" class=""></ion-icon>
+          <label>1,200</label> <br>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          <label>800</label>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
