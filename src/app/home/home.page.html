@@ -11,11 +11,6 @@
 </ion-header>
 
 <ion-content padding>
-  <!-- <ion-searchbar mode="ios" 
-  [(ngModel)]="searchTerm"
-  (ionChange)="setFilteredItems()">
-  </ion-searchbar> -->
-
   <form [formGroup]="form">
     <ion-row>
       <ion-col col-10>
@@ -45,9 +40,11 @@
       <p align='center'>Number of Kofluence influencers talking about #fashion #shoes</p>
     </ion-col>
   </ion-row>
- 
-    <ion-button ion-button color='danger'  expand="full" shape="round">Start A Campaign</ion-button>
   
+  <div  class="but" align="center">
+    <ion-button ion-button color='danger'   shape="round">Start A Campaign</ion-button>
+  </div>
+
 
   <ion-segment color='warning' [(ngModel)]="posts">
     <ion-segment-button (ionSelect)="segmentButtonClicked(topPosts)" value="topPosts">

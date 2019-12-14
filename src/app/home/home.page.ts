@@ -45,10 +45,6 @@ public items
   }
 
   search() {
-    if(this.form.value.length < 1) {
-      this.items = []
-      return
-    }
     this.form.value.tags = this.tagArrayToString(this.form.value.tags);
     if(this.form.value.tags == '#shoes'){
       this.items = [
@@ -77,6 +73,9 @@ public items
         { title: "#redshoes" },
         { title: "#sportshoes" },
       ];
+    }
+    if(this.form.value.tags == ""){
+      this.items = []
     }
   }
 
